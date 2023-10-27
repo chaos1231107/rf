@@ -3,8 +3,8 @@
 SoftwareSerial rfSerial(2, 3);  
 
 void setup() {
-  rfSerial.begin(9600);  
-  Serial.begin(9600);     
+  rfSerial.begin(2000000);  
+  Serial.begin(2000000);     
 }
 
 int number = 0;
@@ -12,6 +12,9 @@ int number = 0;
 void loop() {
 
   rfSerial.write(number);
+  Serial.print("Received number: ");
+  Serial.println(number);
+  number++;
 
   // 라즈베리 파이로부터 숫자 수신
   if (rfSerial.available() > 0) {
@@ -21,13 +24,7 @@ void loop() {
     }
   }
 
-  
-  Serial.print("Received number: ");
-  Serial.println(number);
-
- 
-  number++;
-  delay(1000);
+  delay(100);
 }
 
 
